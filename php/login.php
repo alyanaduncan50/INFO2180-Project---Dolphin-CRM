@@ -1,69 +1,48 @@
 <?php
-// Start a session
-session_start();
+    $servername = 'localhost';
+    $username = 'root';
+    $password = '';
+    $dbname = 'dolphin_crm';
 
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dolphin_crm";
+    // Create connection
+    $mysqli =  new mysqli($servername, $username, $password, $dbname);
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-
-    // Query the database
-    $sql = "SELECT * FROM Users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
-        die("Prepared statement failed: " . $conn->error);
+    // Check connection
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
     }
 
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
 
-        // Verify password
-        if (password_verify($password, $user['password'])) {
-            // Set session variables
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['role'] = $user['role'];
-
-            // Redirect to dashboard
-            header("Location: ../dashboard.html");
-            exit();
-        } else {
-            // Password does not match
-            echo "<script>
-                alert('Invalid email or password.');
-                window.location.href = '../login.html';
-            </script>";
-            exit();
+        $email = filter_input(INPUT_POST,'email', FILTER_SANITIZE_EMAIL);
+        $password = filter_input(INPUT_POST,'password', FILTER_SANITIZE_STRING);
+        $hashedPassword = '';
+        
+        if(!isset($_POST['email'])){
+            die('email invalid');
         }
-    } else {
-        // No user found
-        echo "<script>
-            alert('No user found with the given email.');
-            window.location.href = '../login.html';
-        </script>";
-        exit();
+
+        if(empty($password)){
+            die('password invalid');
+        }
+
+        $stmt = $mysqli->prepare("SELECT password FROM users WHERE email = ?");
+        $stmt->bind_param('s',$email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if($stmt->num_rows > 0){
+            $stmt->bind_result($hashedPassword);
+            $stmt->fetch();
+        }
+
+        if(password_verify($password,$hashedPassword)){
+            header('Location: ../dashboard.html');
+        }else{
+            header('Location: ../login.html');
+        }
+        
     }
 
-    $stmt->close();
-}
-
-$conn->close();
 ?>
