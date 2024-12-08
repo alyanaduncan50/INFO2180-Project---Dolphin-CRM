@@ -1,34 +1,46 @@
-document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
+document.addEventListener("DOMContentLoaded", (event)=>{
+    let loginForm = document.getElementById("loginForm");
 
-    // Get form input values
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    loginForm.addEventListener("submit", (element) =>{
+        console.log("Submitted");
 
-    // Create a POST request
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:3000/login", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+        var emailInput = document.querySelector("#email");
+        var passwordInput = document.querySelector("#password");
 
-    // Handle the response
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                // Parse and handle the response
-                const response = JSON.parse(xhr.responseText);
-                alert("Login successful!");
-                console.log("Token:", response.token);
-                // Optionally, redirect or store the token
-                window.location.href = "dashboard.html";
-            } else {
-                // Handle errors
-                const response = JSON.parse(xhr.responseText);
-                alert(response.error || "Login failed.");
-            }
+        const username = emailInput?.value?.toLowerCase()?.trim();
+        const password = passwordInput?.value?.trim();
+
+        emailInput.value = "";
+        passwordInput.value = "";
+
+        var valid = true;
+        
+        if(isEmpty(username)){
+            valid = false;
         }
-    };
 
-    // Send the login data
-    const data = JSON.stringify({ email: email, password: password });
-    xhr.send(data);
-});
+        if(isEmpty(password)){
+            valid = false;
+        }
+
+        if(!valid){
+            console.log("Invalid");
+            alert("Invalid Credentials");
+            element.preventDefault();
+            return;
+        }
+        console.log("Valid");
+
+
+    });
+})
+
+function isEmpty(elementValue) {
+    if (elementValue.length == 0) {
+      console.log('field is empty');
+      return true;
+    }
+  
+    return false;
+  }
+  
