@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
+    <script src = 'js/dashboard.js'></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <ul>
                 <li>
                     <img src="img/home_icon.png" alt="Home">
-                    
+                    Home
                 </li>
                 <li>
                     <img src="img/new_contact_icon.png" alt="New Contact">
@@ -32,7 +33,7 @@
                 </li>
                 <li>
                     <img src="img/logout_icon.png" alt="Logout">
-                    Logout
+                    <a href="php/logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -48,7 +49,7 @@
                 <button class="filter-btn">Support</button>
                 <button class="filter-btn">Assigned to me</button>
             </div>
-            <table>
+            <table id="dashboard-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -58,53 +59,12 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Mr. Michael Scott</td>
-                        <td>michael.scott@paper.co</td>
-                        <td>The Paper Company</td>
-                        <td><span class="badge sales-lead">SALES LEAD</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Dwight Shrute</td>
-                        <td>dwight.shrute@paper.co</td>
-                        <td>The Paper Company</td>
-                        <td><span class="badge support">SUPPORT</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>Ms. Pam Beesley</td>
-                        <td>pam.beesley@dunder.co</td>
-                        <td>Dunder Mifflin</td>
-                        <td><span class="badge support">SUPPORT</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>Ms. Angela Martin</td>
-                        <td>angela.martin@vance.co</td>
-                        <td>Vance Refrigeration</td>
-                        <td><span class="badge sales-lead">SALES LEAD</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>Ms. Kelly Kapoor</td>
-                        <td>kelly.kapoor@vance.co</td>
-                        <td>Vance Refrigeration</td>
-                        <td><span class="badge support">SUPPORT</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>Mr. Jim Halpert</td>
-                        <td>jim.halpert@dunder.co</td>
-                        <td>Dunder Mifflin</td>
-                        <td><span class="badge sales-lead">SALES LEAD</span></td>
-                        <td><button class="view-btn">View</button></td>
-                    </tr>
+                <tbody >
                 </tbody>
             </table>
         </div>
     </div>
+
 </body>
 
 </html>
