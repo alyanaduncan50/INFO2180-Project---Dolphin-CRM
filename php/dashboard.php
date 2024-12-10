@@ -1,9 +1,11 @@
 <?php
     session_start();
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-    // Check if the user is logged in
     if (!isset($_SESSION['email'])) {
-        header("Location: ../login.html"); // Redirect to login page if not logged in
+        header("Location: ../login.html");
         exit();
     }
 
@@ -12,26 +14,51 @@
     $password = '';
     $dbname = 'dolphin_crm';
 
-    $mysqli = new mysqli($host,$user,$password,$dbname);
-    
+    $mysqli = new mysqli($host, $user, $password, $dbname);
+
     if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Database connection failed: ' . $mysqli->connect_error]);
+        exit();
     }
 
-    $result= $mysqli->query("SELECT title, firstname, lastname, email, company, type FROM contacts");
-    $data = array();
-    
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+
+    $data = [];
+    if ($filter === 'all') {
+        $query = "SELECT title, firstname, lastname, email, company, type FROM contacts";
+        $result = $mysqli->query($query);
+
+        if (!$result) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Query failed: ' . $mysqli->error]);
+            exit();
+        }
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        $result->free();
+    } else {
+        $query = $mysqli->prepare("SELECT title, firstname, lastname, email, company, type FROM contacts WHERE type = ?");
+        if (!$query) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Prepared statement failed: ' . $mysqli->error]);
+            exit();
+        }
+        $query->bind_param("s", $filter);
+        $query->execute();
+        $result = $query->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        $query->close();
     }
 
-    $result->free();
     $mysqli->close();
 
-    // Serve the existing dashboard.html file
-    
-    echo json_encode([
-       'data'=> $data
-    ]);
-
+    header('Content-Type: application/json');
+    echo json_encode(['data' => $data], JSON_PRETTY_PRINT);
+    exit();
 ?>
