@@ -144,9 +144,12 @@ thead th {
 }
 
 tbody td {
-    padding: 10px;
+    padding: 15px;
     border-top: 1px solid #ddd;
     font-size: 0.95em;
+    vertical-align: middle;
+    text-align: center;
+    justify-content: center;
 }
 
 .badge {
@@ -154,14 +157,19 @@ tbody td {
     border-radius: 5px;
     color: white;
     font-size: 0.8em;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
 }
 
-.badge.sales-lead {
-    background-color: #f9a825;
+.badge-sales-lead {
+    background-color: #eece5b;
+    color: black;
 }
 
-.badge.support {
-    background-color: #007bff;
+.badge-support {
+    background-color: #7851db;
 }
 
 .view-btn {

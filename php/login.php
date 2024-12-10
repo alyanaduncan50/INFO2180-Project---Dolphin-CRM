@@ -38,6 +38,8 @@
         }
 
         if(password_verify($password,$hashedPassword)){
+            session_start(); // Start the session
+            $_SESSION['email'] = $email;   
             header('Location: ../dashboard.html');
         }else{
             header('Location: ../login.html');
