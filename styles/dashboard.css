@@ -112,6 +112,10 @@ header {
     position: relative;
 }
 
+.filter-btn.active {
+    color: #575bc5;
+}
+
 .filter-btn.active::after,
 .filter-btn:hover::after {
     content: '';
