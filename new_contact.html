@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolphin CRM - New Contact</title>
+    <link rel="stylesheet" href="styles/new_contact.css">
+    <script src="js/new_contact.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="img/logo.png" alt="Logo">
+        <span class="navbar-title">Dolphin CRM</span>
+    </div>
+
+    <div class="layout">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <img src="img/home_icon.png" alt="Home">
+                    <a href="dashboard.html">Home</a>
+                </li>
+                <li>
+                    <img src="img/new_contact_icon.png" alt="New Contact">
+                    <a href="new_contact.html" class="active">New Contact</a>
+                </li>
+                <li>
+                    <img src="img/users_icon.png" alt="Users">
+                    <a href="users.html">Users</a>
+                </li>
+                <li>
+                    <img src="img/logout_icon.png" alt="Logout">
+                    <a href="php/logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <header>
+                <h1>New Contact</h1>
+            </header>
+
+            <form id="newContactForm" class="form-container">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <select id="title" name="title" required>
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mrs">Mrs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Telephone</label>
+                        <input type="text" id="telephone" name="telephone">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select id="type" name="type" required>
+                            <option value="Sales Lead">Sales Lead</option>
+                            <option value="Support">Support</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="assigned_to">Assigned To</label>
+                        <select id="assigned_to" name="assigned_to" required>
+                            <!-- Dynamically Populated -->
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
