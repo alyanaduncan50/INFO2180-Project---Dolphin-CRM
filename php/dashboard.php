@@ -39,6 +39,30 @@
             $data[] = $row;
         }
         $result->free();
+
+    }elseif($filter === 'Assigned to me'){
+        if (!isset($_SESSION['id'])) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Session ID not set. Please log in.']);
+            exit();
+        }
+        $userId = $_SESSION['id'];
+        $query = $mysqli->prepare("SELECT title, firstname, lastname, email, company, type FROM contacts WHERE assigned_to = ?");
+        
+        if (!$query) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Prepared statement failed: ' . $mysqli->error]);
+            exit();
+        }
+        $query->bind_param("s", $userId);
+        $query->execute();
+        $result = $query->get_result();
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        $query->close();
+        
     } else {
         $query = $mysqli->prepare("SELECT title, firstname, lastname, email, company, type FROM contacts WHERE type = ?");
         if (!$query) {
