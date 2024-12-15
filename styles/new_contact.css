@@ -6,78 +6,6 @@ body {
     height: auto;
 }
 
-.navbar {
-    background-color: #2b2f48;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.navbar img {
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-}
-
-.navbar-title {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.layout {
-    display: flex;
-    flex: 1;
-}
-
-.sidebar {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
-    font-size: 15px;
-    width: 200px;
-    padding: 10px 10px;
-    height: calc(100vh - 60px);
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar ul li {
-    padding: 8px 0;
-    cursor: pointer;
-}
-
-.sidebar ul li img {
-    height: 20px;
-    width: 20px;
-    margin-right: 5px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.sidebar ul li:hover a {
-    text-decoration: underline;
-}
-
-.sidebar ul li a.active {
-    font-weight: bold;
-    color: #575bc5;
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
-
 header h1 {
     margin-bottom: 20px;
     font-size: 1.5em;
@@ -115,6 +43,7 @@ header h1 {
 }
 
 label {
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -126,16 +55,22 @@ input, select {
     font-size: 1em;
 }
 
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
 .save-btn {
     background-color: #575bc5;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    width: 100%;
     transition: background-color 0.3s ease;
+    width: auto; 
 }
 
 .save-btn:hover {

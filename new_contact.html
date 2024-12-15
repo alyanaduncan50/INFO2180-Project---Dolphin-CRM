@@ -6,36 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM - New Contact</title>
     <link rel="stylesheet" href="styles/new_contact.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <script src="js/new_contact.js"></script>
+    <script src = 'js/loadNavbarSidebar.js'></script>
+
 </head>
 
 <body>
-    <div class="navbar">
-        <img src="img/logo.png" alt="Logo">
-        <span class="navbar-title">Dolphin CRM</span>
-    </div>
-
-    <div class="layout">
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <img src="img/home_icon.png" alt="Home">
-                    <a href="dashboard.html">Home</a>
-                </li>
-                <li>
-                    <img src="img/new_contact_icon.png" alt="New Contact">
-                    <a href="new_contact.html" class="active">New Contact</a>
-                </li>
-                <li>
-                    <img src="img/users_icon.png" alt="Users">
-                    <a href="users.html">Users</a>
-                </li>
-                <li>
-                    <img src="img/logout_icon.png" alt="Logout">
-                    <a href="php/logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
+    <div id="navbar"></div>
+    <div class = "layout">
+        <div id ="sidebar"></div>
 
         <div class="main-content">
             <header>
@@ -83,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <select id="type" name="type" required>
+                        <select  id="type" name="type" required>
                             <option value="Sales Lead">Sales Lead</option>
                             <option value="Support">Support</option>
                         </select>
@@ -98,8 +78,10 @@
                         </select>
                     </div>
                 </div>
-
-                <button type="submit" class="save-btn">Save</button>
+                <div class="button-container">
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+                
             </form>
         </div>
     </div>

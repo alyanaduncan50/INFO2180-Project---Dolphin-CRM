@@ -6,37 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <script src = 'js/dashboard.js'></script>
+    <script src = 'js/loadNavbarSidebar.js'></script>
 </head>
 
 <body>
-    <div class="navbar">
-        <img src="img/logo.png" alt="Logo">
-        <span class="navbar-title">Dolphin CRM</span>
-    </div>
-
-
-    <div class="layout">
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <img src="img/home_icon.png" alt="Home">
-                    Home
-                </li>
-                <li>
-                    <img src="img/new_contact_icon.png" alt="New Contact">
-                    New Contact
-                </li>
-                <li>
-                    <img src="img/users_icon.png" alt="Users">
-                    Users
-                </li>
-                <li>
-                    <img src="img/logout_icon.png" alt="Logout">
-                    <a href="php/logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
+    <div id="navbar"></div>
+    <div class = "layout">
+        <div id ="sidebar"></div>
+   
         <div class="main-content">
             <header>
                 <h1>Dashboard</h1>

@@ -1,6 +1,5 @@
 window.onload = function () {
   fetchAllRecords();
-
   setupFilters();
 };
 
