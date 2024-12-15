@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Dolphin CRM</title>
+
+		<link href="user.css" type="text/css" rel="stylesheet" />
+
+		<!-- <script src="user.js" type="text/javascript"></script> -->
+	</head>
+
+    <body>
+        <header>
+            <img src="images\noah-boyer-dgBOx1e3Mbs-unsplash.jpg"/>
+            <h1>Dolphin CRM</h1>
+        </header>
+        <main>
+            <aside class="options">
+                <p>Options</p>
+                <ul>
+                    <li>Home</li>
+                    <li>New Contact</li>
+                    <li>User</li>
+                    <li>Logout</li>
+                </ul>
+            </aside>
+
+            <!-- This creates a form to collect information for the new user to be added to the database. -->
+            <form action="user.php" method="post" autocomplete="off" class="form">
+                <h2 id="title">New User</h2>
+                <div id="form-group">
+                    <label for="fname">Firstname:</label> <!-- Displays the label 'Firstname:' as a header for its respective input field.  -->
+                    <input type="text" id="fname" name="fname" minlength="3" placeholder="John" required> <!-- Creates the input field for the user to enter data for firstname.  -->
+                    <br>
+                    <label for="lname">Lastname:</label> <!-- Displays the label 'Lastname:' as a header for its respective input field.  -->
+                    <input type="text" id="lname" name="lname" minlength="3" placeholder="Doe" required> <!-- Creates the input field for the user to enter data for lastname.  -->
+                    <br>
+                    <label for="password">Password:</label> <!-- Displays the label 'Password:'' as a header for its respective input field.  -->
+                    <input type="password" id="password" name="password" minlength="6" placeholder="Minimum length: 6 characters" required> <!-- Creates the input field for the user to enter data for password.  -->
+                    <span class="icon" id="togglePassword">
+                        <i class="far fa-eye-slash"></i>
+                    </span>
+                    <br>
+                    <label for="email">Email:</label> <!-- Displays the label 'Email:' as a header for its respective input field.  -->
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required> <!-- Creates the input field for the user to enter data for email.  -->
+                    <br>
+                    <label for="role">Role:</label> <!-- Displays the label 'Role:' as a header for its respective select field.  -->
+                    <!-- Creates the select options for the user to choose a role.  -->
+                    <select name="role" id="role">
+                        <option>Administrator</option>
+                        <option>Member</option>
+                    </select>
+                    <br>
+                    <button id="submit" name="submit" type="submit" value="Register...">Submit</button> <!-- Displays a submit button to send the info. to the database when clicked.  -->
+                </div>
+                <!-- <button id="submit" name="submit" type="submit" value="Register...">Submit</button> -->
+            </form>
+        </main>
+
+        <footer>
+			<p>Copyright &copy; 2024, Joseph Hylton</p>
+		</footer>
+
+    </body>
+
+</html>
