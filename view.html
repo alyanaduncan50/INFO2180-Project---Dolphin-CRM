@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contact</title>
+    <link rel="stylesheet" href="styles/view.css">
+    <script src="js/view.js"></script>
+</head>
+<body>
+     <div class="navbar">
+        <img src="img/logo.png" alt="Logo">
+        <span class="navbar-title">Dolphin CRM</span>
+    </div>
+    <div class="layout">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <img src="img/home_icon.png" alt="Home">
+                    
+                </li>
+                <li>
+                    <img src="img/new_contact_icon.png" alt="New Contact">
+                    New Contact
+                </li>
+                <li>
+                    <img src="img/users_icon.png" alt="Users">
+                    Users
+                </li>
+                <li>
+                    <img src="img/logout_icon.png" alt="Logout">
+                    Logout
+                </li>
+            </ul>
+    </div>
+        
+    <div class="main-content" >
+        <div id="contact-modal">
+
+            <div class="contact-header">
+                <div id="button-container">
+                    <button id="assign-btn" class="assign-btn"> <img src="img/assign.jpeg" alt="assign button">Assign to me</button>
+                    <button id="switch-type" class="switch-btn"> <img src="img/switch.png" alt="switch button">Switch to Sales Lead</button>
+                </div>
+                <div id="info">
+                    <img src="img/profile.png" alt="client-profile">
+                    <p><span id="contact-fullname"></span></p>
+                    <p>Created on <span id="contact-created-at"></span> by <span id="contact-assigned-to"></span></p>
+                    <p>Updated on <span id="contact-updated-at"></span></p>
+                </div>
+            </div>  
+        </div> 
+
+            <section>
+                <div>
+                    <h5 id="heading-4">Email</h5>
+                    <p><span id="contact-email"></span></p>
+
+                    <h5 id="heading-4">Company</h5>
+                    <p><span id="contact-company"></span></p>
+
+                    <h5 id="heading-4">Telephone</h5>
+                    <p><span id="contact-telephone"></span></p>
+
+                    <h5 id="heading-4">Assigned To</h5>
+                    <p><span id="contact-assigned-to"></span></p>    
+                </div>
+            </section>
+
+            
+            
+            <section class="note">
+                <img src="img/note.png" alt="comment">
+                <h5 class="notes">Notes</h5>
+                <div id="notes-list">
+                    
+                </div>
+            </section>
+        
+            
+            <section>
+                <h5>Add a note for <span id="contact-fullname"></span></h5>
+                <form>
+                    <textarea id="new-note" placeholder="Enter details here"></textarea>
+                    <button type="button" id="add-note" class="btn">Add Note</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</body>  
+</html>
