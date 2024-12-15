@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM - User List</title>
     <link rel="stylesheet" href="user_list.css">
+    <script src="js/adduserbtn.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -24,11 +25,11 @@
                 </li>
                 <li>
                     <img src="img/new_contact_icon.png" alt="New Contact">
-                    <a href="new_contact.html" class="active">New Contact</a>
+                    <a href="new_contact.html">New Contact</a>
                 </li>
                 <li>
                     <img src="img/users_icon.png" alt="Users">
-                    <a href="users.html">Users</a>
+                    <a href="users.html" class="active">Users</a> <!-- Active link -->
                 </li>
                 <li>
                     <img src="img/logout_icon.png" alt="Logout">
@@ -48,11 +49,11 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Created</th>
+                            <th>Date Created</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <!-- Rows will be dynamically injected -->
                     </tbody>
                 </table>
             </div>
