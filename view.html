@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contact</title>
+    <link rel="stylesheet" href="styles/view.css">
+    <script src="js/view.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="img/logo.png" alt="Logo">
+        <span class="navbar-title">Dolphin CRM</span>
+    </div>
+
+    <!-- Layout -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <img src="img/home_icon.png" alt="Home"> Home
+                </li>
+                <li>
+                    <img src="img/new_contact_icon.png" alt="New Contact"> New Contact
+                </li>
+                <li>
+                    <img src="img/users_icon.png" alt="Users"> Users
+                </li>
+                <li>
+                    <img src="img/logout_icon.png" alt="Logout"> Logout
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="contact-modal">
+                <!-- Header Section -->
+                <div class="contact-header">
+                    <div id="info">
+                        <img src="img/profile.png" alt="Client Profile">
+                        <div>
+                            <p class="contact-name" id="contact-fullname">Mr. Michael Scott</p>
+                            <p class="contact-meta">
+                                Created on <span id="contact-created-at">November 9, 2022</span> by 
+                                <span id="contact-created-by">David Wallace</span>
+                            </p>
+                            <p class="contact-meta">
+                                Updated on <span id="contact-updated-at">November 13, 2022</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="button-container">
+                        <button id="assign-btn" class="assign-btn">
+                            <img src="img/assign.jpeg" alt="Assign button">Assign to me
+                        </button>
+                        <button id="switch-type" class="switch-btn">
+                            <img src="img/switch.png" alt="Switch button">Switch to Sales Lead
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contact Details Section -->
+                <section class="contact-details">
+                    <div class="grid-item">
+                        <h5>Email</h5>
+                        <p id="contact-email">michael.scott@paper.co</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <h5>Telephone</h5>
+                        <p id="contact-telephone">876-999-9999</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <h5>Company</h5>
+                        <p id="contact-company">The Paper Company</p>
+                    </div>
+
+                    <div class="grid-item">
+                        <h5>Assigned To</h5>
+                        <p id="contact-assigned-to">Jen Levinson</p>
+                    </div>
+                </section>
+
+
+                <!-- Notes Section -->
+                <section class="note">
+                    <h5 class="notes">Notes</h5>
+                    <div id="notes-list">
+                        <p><strong>Jane Doe</strong><br>sample text</small></p>
+                        <p><strong>John Doe</strong><br>sample text.<br><small>November 11, 2022 at 10am</small></p>
+                        <p><strong>John Doe</strong><br>sample text.<br><small>November 13, 2022 at 6pm</small></p>
+                    </div>
+                </section>
+
+                <!-- Add Note Section -->
+                <section>
+                    <h5>Add a note about Michael</h5>
+                    <form>
+                        <textarea id="new-note" placeholder="Enter details here"></textarea>
+                        <button type="button" id="add-note" class="btn">Add Note</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
