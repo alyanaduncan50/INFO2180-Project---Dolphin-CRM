@@ -111,6 +111,14 @@ tbody td {
     font-size: 15px;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.view-btn a{
+    text-decoration: none;
+    line-height: normal;
+    color: inherit;
+    display: inline-block;
 }
 
 
