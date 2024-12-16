@@ -21,20 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('contact-updated-at').textContent = contact.updated_at;
                 document.getElementById('contact-assigned-to').textContent = contact.assigned_to;
 
-                const notesList = document.getElementById('notes-list');
-                notesList.innerHTML = '';
-                contact.notes.forEach(note => {
-                    const noteElement = document.createElement('p');
-                    noteElement.innerHTML = `<strong>${note.addedBy}</strong><br>${note.comment}<br><small>${note.date}</small>`;
-                    notesList.appendChild(noteElement);
-                });
-
+                renderNotes(contact.notes);
                 initializeAddNoteButton(contactId);
+                initializeAssignToMeButton(contactId);
+                initializeSwitchRoleButton(contactId, contact.type);
             })
             .catch(error => {
                 console.error('Error:', error);
                 alert("Failed to fetch contact details.");
             });
+    }
+
+    function renderNotes(notes) {
+        const notesList = document.getElementById('notes-list');
+        notesList.innerHTML = '';
+        notes.forEach(note => {
+            const noteElement = document.createElement('p');
+            noteElement.innerHTML = `
+                <strong>${note.addedBy || "Unknown"}</strong><br>
+                ${note.comment}<br>
+                <small>${new Date(note.date).toLocaleString()}</small>
+            `;
+            notesList.appendChild(noteElement);
+        });
     }
 
     function initializeAddNoteButton(contactId) {
@@ -60,17 +69,75 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert(data.success);
+                alert("✅ " + data.success);
                 document.getElementById('new-note').value = '';
-                fetchContactDetails(contactId); // Reload notes
+                fetchContactDetails(contactId);
             } else {
-                alert(data.error || "Failed to add note.");
+                alert("❌ " + (data.error || "Failed to add note."));
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("An error occurred while adding the note.");
+            alert("❌ An unexpected error occurred.");
         });
+    }
+
+    function initializeAssignToMeButton(contactId) {
+        const assignBtn = document.getElementById('assign-btn');
+        assignBtn.onclick = () => {
+            fetch('php/assign_to_me.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `contact_id=${contactId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("✅ " + data.success);
+                    document.getElementById('contact-assigned-to').textContent = "You";
+                } else {
+                    alert("❌ " + (data.error || "Failed to assign contact."));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("❌ An unexpected error occurred.");
+            });
+        };
+    }
+
+    function initializeSwitchRoleButton(contactId, currentType) {
+        const switchRoleBtn = document.getElementById('switch-type');
+        updateSwitchRoleButtonText(switchRoleBtn, currentType);
+
+        switchRoleBtn.onclick = () => {
+            const newType = currentType === "Sales Lead" ? "Support" : "Sales Lead";
+            fetch('php/switch_role.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `contact_id=${contactId}&type=${newType}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`✅ Role switched to ${newType}`);
+                    fetchContactDetails(contactId);
+                } else {
+                    alert(`❌ ${data.error || "Failed to switch role."}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("❌ An unexpected error occurred.");
+            });
+        };
+    }
+
+    function updateSwitchRoleButtonText(button, currentType) {
+        const newText = currentType === "Sales Lead" ? "Switch to Support" : "Switch to Sales Lead";
+        button.innerHTML = `<img src="img/switch.png" alt="Switch button" style="height: 16px; width: 16px; margin-right: 5px;"> ${newText}`;
     }
 
     const contactId = getQueryParam('id');

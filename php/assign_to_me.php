@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -9,33 +10,32 @@ $dbname = 'dolphin_crm';
 $username = 'root';
 $password = '';
 
+// Check if user is logged in
 if (!isset($_SESSION['id'])) {
     echo json_encode(['error' => 'User not logged in.']);
     exit();
 }
 
-if (!isset($_POST['contact_id'], $_POST['comment'])) {
-    echo json_encode(['error' => 'Contact ID and comment are required.']);
+if (!isset($_POST['contact_id'])) {
+    echo json_encode(['error' => 'Contact ID is required.']);
     exit();
 }
 
+$loggedInUserId = $_SESSION['id']; 
 $contactId = intval($_POST['contact_id']);
-$comment = htmlspecialchars(trim($_POST['comment']));
-$createdBy = $_SESSION['id'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->prepare("INSERT INTO Notes (contact_id, comment, created_by, created_at) VALUES (:contact_id, :comment, :created_by, NOW())");
+    $stmt = $pdo->prepare("UPDATE contacts SET assigned_to = :assigned_to, updated_at = NOW() WHERE id = :contact_id");
     $stmt->execute([
+        ':assigned_to' => $loggedInUserId,
         ':contact_id' => $contactId,
-        ':comment' => $comment,
-        ':created_by' => $createdBy
     ]);
 
-    echo json_encode(['success' => 'Note added successfully.']);
+    echo json_encode(['success' => 'Contact successfully assigned to you.']);
 } catch (PDOException $e) {
-    echo json_encode(['error' => 'Failed to add note: ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Failed to assign contact: ' . $e->getMessage()]);
 }
 ?>
