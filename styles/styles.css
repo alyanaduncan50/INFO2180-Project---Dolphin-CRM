@@ -14,7 +14,7 @@
     padding: 10px 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .navbar img {
@@ -27,7 +27,6 @@
     font-size: 1.2em;
     font-weight: bold;
 }
-
 
 .layout {
     display: flex;
@@ -47,8 +46,10 @@
 .sidebar a {
     text-decoration: none; 
     color: black; 
+    font-size: 18px;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    padding-left: 15px;
 }
 
 .sidebar a:visited {
@@ -90,4 +91,24 @@
     flex: 1;
     padding: 20px;
     background-color: #f4f4f4;
+}
+.add-user-btn {
+    background-color: #575bc5;
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    border: none;
+    gap: 25px;
+    padding: 13px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-user-btn img{
+    height: 20px;
+    width: 20px;
+}
+
+.add-user-btn:hover {
+    background-color: #454aa8;
 }

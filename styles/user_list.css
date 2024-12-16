@@ -82,10 +82,10 @@ body {
 }
 
 button {
-    position: absolute; /* Position the button absolutely */
-    top: 20px; /* 20px from the top of the content */
-    right: 20px; /* 20px from the right edge */
-    background-color: #575bc5; /* Purple color */
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    background-color: #575bc5; 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -124,9 +124,14 @@ tbody td {
     font-size: 0.95em;
     vertical-align: middle;
     text-align: center;
+    font-weight: bold;
     justify-content: center;
 }
 
 
+
+.user-data{
+    color: rgb(144, 144, 144);
+}
 
 

@@ -1,88 +1,39 @@
 <?php
 session_start();
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-// Check if the user is logged in and is an admin
-if (!isset($_SESSION['email']) || $_SESSION['role'] != 'Admin') {
-    header('Location: login.html'); // Redirect to login if unauthorized
+    if (!isset($_SESSION['email'])) {
+        header("Location: ../login.html");
+        exit();
+    }
+
+    $host = 'localhost';
+    $user = 'root';
+    $password = '';
+    $dbname = 'dolphin_crm';
+
+header('Content-Type: application/json');
+$mysqli = new mysqli("localhost", $user, $password, $dbname);
+
+if ($mysqli->connect_error) {
+    echo json_encode(['error' => 'Database connection failed: ' . $mysqli->connect_error]);
     exit();
 }
 
-// Database connection configuration
-$host = 'localhost';
-$dbname = 'dolphin_crm';
-$username = 'root';
-$password = '';
+$query = "SELECT firstname, lastname, email, role, created_at FROM Users ORDER BY created_at DESC";
+$result = $mysqli->query($query);
 
-// Create database connection
-$mysqli = new mysqli($host, $username, $password, $dbname);
-
-// Check database connection
-if ($mysqli->connect_error) {
-    die("Database connection failed: " . $mysqli->connect_error);
+if ($result) {
+    $users = [];
+    while ($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+    echo json_encode($users); 
+} else {
+    echo json_encode(['error' => 'Failed to fetch users']);
 }
 
+$mysqli->close();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolphin CRM - User List</title>
-    <link rel="stylesheet" href="user_list.css">
-    <script src="js/adduserbtn.js"></script>
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <img src="img/logo.png" alt="Logo">
-        <span class="navbar-title">Dolphin CRM</span>
-    </div>
-
-    <!-- Layout -->
-    <div class="layout">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <img src="img/home_icon.png" alt="Home">
-                    <a href="dashboard.html">Home</a>
-                </li>
-                <li>
-                    <img src="img/new_contact_icon.png" alt="New Contact">
-                    <a href="new_contact.html">New Contact</a>
-                </li>
-                <li>
-                    <img src="img/users_icon.png" alt="Users">
-                    <a href="users.html" class="active">Users</a> <!-- Active link -->
-                </li>
-                <li>
-                    <img src="img/logout_icon.png" alt="Logout">
-                    <a href="php/logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="content">
-            <h1>Users</h1>
-            <button>+ Add User</button>
-            <div class="user-list">
-                <table class="user-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Date Created</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Rows will be dynamically injected -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
