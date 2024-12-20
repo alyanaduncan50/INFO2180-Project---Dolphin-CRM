@@ -1,9 +1,9 @@
 <?php
 // Database configuration
-$host = 'localhost'; // Your database host
-$dbname = 'dolphin_crm'; // Your database name
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+$host = 'localhost'; 
+$dbname = 'dolphin_crm';
+$username = 'root'; 
+$password = ''; 
 
 try {
     // Create a new PDO instance
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':company' => $input['company'] ?? null,
             ':type' => $input['type'],
             ':assigned_to' => $input['assigned_to'],
-            ':created_by' => 1, // Replace with logged-in user ID
+            ':created_by' => $_SESSION['id']
         ]);
 
         http_response_code(201);
