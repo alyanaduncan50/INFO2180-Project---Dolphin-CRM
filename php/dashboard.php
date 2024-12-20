@@ -26,7 +26,7 @@
 
     $data = [];
     if ($filter === 'all') {
-        $query = "SELECT title, firstname, lastname, email, company, type FROM contacts";
+        $query = "SELECT id, title, firstname, lastname, email, company, type FROM contacts";
         $result = $mysqli->query($query);
 
         if (!$result) {
@@ -47,7 +47,7 @@
             exit();
         }
         $userId = $_SESSION['id'];
-        $query = $mysqli->prepare("SELECT title, firstname, lastname, email, company, type FROM contacts WHERE assigned_to = ?");
+        $query = $mysqli->prepare("SELECT id, title, firstname, lastname, email, company, type FROM contacts WHERE assigned_to = ?");
         
         if (!$query) {
             header('Content-Type: application/json');
@@ -64,7 +64,7 @@
         $query->close();
         
     } else {
-        $query = $mysqli->prepare("SELECT title, firstname, lastname, email, company, type FROM contacts WHERE type = ?");
+        $query = $mysqli->prepare("SELECT id, title, firstname, lastname, email, company, type FROM contacts WHERE type = ?");
         if (!$query) {
             header('Content-Type: application/json');
             echo json_encode(['error' => 'Prepared statement failed: ' . $mysqli->error]);
