@@ -4,44 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolphin CRM - User List</title>
-    <link rel="stylesheet" href="user_list.css">
+    <link rel="stylesheet" href="styles/user_list.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <script src="js/adduserbtn.js"></script>
+    <script src="js/user_list.js"></script>
+    <script src = 'js/adduserbtn.js'></script>
+    <script src = 'js/loadNavbarSidebar.js'></script>
+
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <img src="img/logo.png" alt="Logo">
-        <span class="navbar-title">Dolphin CRM</span>
-    </div>
-
-    <!-- Layout -->
-    <div class="layout">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <img src="img/home_icon.png" alt="Home">
-                    <a href="dashboard.html">Home</a>
-                </li>
-                <li>
-                    <img src="img/new_contact_icon.png" alt="New Contact">
-                    <a href="new_contact.html">New Contact</a>
-                </li>
-                <li>
-                    <img src="img/users_icon.png" alt="Users">
-                    <a href="users.html" class="active">Users</a> <!-- Active link -->
-                </li>
-                <li>
-                    <img src="img/logout_icon.png" alt="Logout">
-                    <a href="php/logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
-
+    <div id="navbar"></div>
+    <div class = "layout">
+        <div id ="sidebar"></div>
+   
+        <div class="main-content">
         <!-- Main Content -->
         <div class="content">
-            <h1>Users</h1>
-            <button>+ Add User</button>
+            <header>
+                <h1>Users</h1>
+                <button class="add-user-btn" id = "add-user-btn">
+                    <img src="img/plus_icon.png">
+                    Add User
+                </button>
+            </header>
             <div class="user-list">
                 <table class="user-table">
                     <thead>
