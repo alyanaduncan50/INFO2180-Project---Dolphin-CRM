@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolphin CRM - User List</title>
+    <link rel="stylesheet" href="styles/user_list.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="js/adduserbtn.js"></script>
+    <script src="js/user_list.js"></script>
+    <script src = 'js/adduserbtn.js'></script>
+    <script src = 'js/loadNavbarSidebar.js'></script>
+
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class = "layout">
+        <div id ="sidebar"></div>
+   
+        <div class="main-content">
+        <!-- Main Content -->
+        <div class="content">
+            <header>
+                <h1>Users</h1>
+                <button class="add-user-btn" id = "add-user-btn">
+                    <img src="img/plus_icon.png">
+                    Add User
+                </button>
+            </header>
+            <div class="user-list">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be dynamically injected -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
