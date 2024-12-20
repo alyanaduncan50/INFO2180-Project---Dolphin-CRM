@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    var btn = document.querySelector("#add-user-btn");
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = "add_user.html";
+    });
+
     fetch('php/user_list.php')
         .then(response => {
             if (!response.ok) {

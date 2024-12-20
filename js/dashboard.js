@@ -1,4 +1,11 @@
 window.onload = function () {
+  var btn = document.querySelector("#add-user-btn");
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = "add_user.html";
+    });
+
   fetchAllRecords();
   setupFilters();
 };
@@ -51,8 +58,9 @@ function populateTable(rows) {
     .querySelector("tbody");
 
   tableBody.innerHTML = ""; 
-
+  
   rows.forEach((row) => {
+    console.log(row.id);
     const tr = document.createElement("tr");
     let badgeClass = row.type === "Support" ? "badge-support" : "badge-sales-lead";
 
@@ -61,7 +69,7 @@ function populateTable(rows) {
       <td>${row.email}</td>
       <td>${row.company}</td>
       <td><span class="badge ${badgeClass}">${row.type}</span></td>
-      <td class="view-btn">View</td>
+      <button class="view-btn"><a href="view_contact.html?id=${row.id}"">View</a></button>
     `;
     tableBody.appendChild(tr);
   });
